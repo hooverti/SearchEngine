@@ -27,3 +27,7 @@ def parser(file_name):
     #for x,y in word_freq.items():
     #    print("key: ", x, "freq:", y)
     return word_freq
+
+if __name__ == "__main__":
+    
+    parser()
