@@ -6,6 +6,6 @@ mycol = mydb["tokens"]
 
 
 term = input("Search: ")
-print("You searched for: ", term)
-for i in mycol.find({"token": term}, {"page": 1, "freq": 0, "_id": 0}):
+print("Looking that info up for you...")
+for i in mycol.find({"token": term}, {"token": 0, "freq": 0, "_id": 0}):
     print(i)
