@@ -25,11 +25,6 @@ for subdir, dirs, files in os.walk(root):
             r = ''.join([i for i in p if not i.isdigit()])
             p = r
             pnum += 1
-            # posting = [doc_id, freq]
-            # if term not in word_dict:
-            #     word_dict[term].append(posting)
-            # else:
-            #     word_dict[term].append(posting)
 
 
 
@@ -55,5 +50,5 @@ for subdir, dirs, files in os.walk(root):
 
 #mycol.update({"token":"vision"},{"$set": {"p3":{"doc":"1/33","freq":"2"}}})
 
-for x in mycol.find():
-    print(x)
+# for x in mycol.find():
+#     print(x)
