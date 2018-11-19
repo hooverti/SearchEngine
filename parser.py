@@ -25,8 +25,6 @@ def parser(file_name):
                 else:
                     word_freq[nw] += 1
 
-        #for x,y in word_freq.items():
-        #    print("key: ", x, "freq:", y)
         return word_freq
     except UnicodeDecodeError:
         return '=== Not utf-8 ==='

@@ -1,9 +1,8 @@
-import json
+#import json
 import tkinter
 import sys
+from search import search
 
-file = "WEBPAGES_RAW/bookkeeping.json"
-data = json.loads(open(file).read())
 DEFAULT_FONT = ('Verdana', 12)
 
 
@@ -89,19 +88,15 @@ class IntroApp:
         dialog.show()
         self.root_window.destroy()
 
-        # urls = list()  # list of top urls based on relevancy
         if dialog.was_ok_clicked():
-            # self._query = dialog.get_query()
-            # here we will get the query (above) and then find it in our database
-            urls = ["0/10", "0/12", "0/38"]
-            if urls is not None:
-                for u in urls:
-                    for i in data:
-                        if i == u:
-                            print("The url is: ", data[i])
-                            break
+            self._query = dialog.get_query()
+            results = search(self._query)
+            if len(results) != 0:
+                for x, url in results.items():
+                    print(url)
             else:
-                print("No results for those urls")
+                print("No results for that search found.")
+
 
 
 if __name__ == '__main__':
