@@ -1,5 +1,7 @@
-#import json
+# import json
 import tkinter
+from tkinter import *
+from tkinter import messagebox
 import sys
 from search import search
 
@@ -91,12 +93,18 @@ class IntroApp:
         if dialog.was_ok_clicked():
             self._query = dialog.get_query()
             results = search(self._query)
+            root = tkinter.Tk()
+            root.title("Top Websites")
             if len(results) != 0:
-                for x, url in results.items():
-                    print(url)
+               for x, url in results.items():
+                   # print(url)
+                   listbox = Listbox(root, width=120, height=20, selectmode=BROWSE)
+                   listbox.insert(END, "URL:  " + url + '\n')
+                   listbox.pack()
+                   break
             else:
-                print("No results for that search found.")
-
+               # print("No results for that search found.")
+                messagebox.showinfo("Sorry", "No results for that search found!!" + '\n' + "Try again")
 
 
 if __name__ == '__main__':
