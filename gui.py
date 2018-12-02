@@ -1,9 +1,9 @@
-# import json
 import tkinter
 from tkinter import *
 from tkinter import messagebox
 import sys
 from search import search
+import webbrowser
 
 DEFAULT_FONT = ('Verdana', 12)
 
@@ -75,6 +75,9 @@ class NameDialog:
         sys.exit(0)
 
 
+def callback(event):
+    webbrowser.open_new(r"http://" + event.widget.cget("text"))
+
 class IntroApp:
     def __init__(self):
         self.root_window = tkinter.Tk()
@@ -84,6 +87,9 @@ class IntroApp:
 
     def start(self):
         self.root_window.mainloop()
+
+    def callback(event):
+        webbrowser.open_new(r"http://" + self.url)
 
     def on_intro(self):
         dialog = NameDialog()
@@ -96,12 +102,16 @@ class IntroApp:
             root = tkinter.Tk()
             root.title("Top Websites")
             if len(results) != 0:
-               for x, url in results.items():
-                   # print(url)
-                   listbox = Listbox(root, width=120, height=20, selectmode=BROWSE)
-                   listbox.insert(END, "URL:  " + url + '\n')
-                   listbox.pack()
-                   break
+                label = Label(root, text="Showing the first 10 results of " + str(len(results)) + ":")
+                label.pack()
+                i = 0
+                for url in range(len(results)):
+                    link = Label(root, text=results[url], fg="blue")
+                    link.pack()
+                    link.bind("<Button-1>", callback)
+                    i += 1
+                    if i == 10:
+                        break
             else:
                # print("No results for that search found.")
                 messagebox.showinfo("Sorry", "No results for that search found!!" + '\n' + "Try again")

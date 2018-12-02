@@ -4,8 +4,7 @@ import re
 
 
 def parser(file_name):
-    url  = open(file_name, "r")
-
+    url = open(file_name, "r")
     try:
         html = url.read()
         soup = BeautifulSoup(html, "lxml")
@@ -24,7 +23,6 @@ def parser(file_name):
                     word_freq[nw] = 1
                 else:
                     word_freq[nw] += 1
-
         return word_freq
     except UnicodeDecodeError:
         return '=== Not utf-8 ==='
