@@ -6,13 +6,17 @@ import re
 def parser(file_name):
     url = open(file_name, "r")
     try:
+        # get the document and run BS4 on it for parsing
         html = url.read()
         soup = BeautifulSoup(html, "lxml")
+        # remove everything inside JS, otherwise we get weird code still
         for script in soup(["script", "style"]):
             script.decompose()
 
+        # get all the readable text from the page
         text = soup.get_text()
 
+        # break into tokens and increment the frequency for the token
         tokens = re.findall('\w+', text)
         word_freq = dict()
         stop_words = set(stopwords.words('english'))
